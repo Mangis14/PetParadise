@@ -1,0 +1,56 @@
+package com.petparadise.game.cache;
+
+CREATE TABLE GameState (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    petCoins INTEGER NOT NULL,
+    lastSaveTime INTEGER NOT NULL,
+    globalCoinMultiplier REAL NOT NULL
+);
+
+CREATE TABLE OwnedPets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    petName TEXT NOT NULL,
+    coinGenerationRate INTEGER NOT NULL
+);
+
+CREATE TABLE PetRateBonuses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    petName TEXT NOT NULL,
+    bonusAmount INTEGER NOT NULL
+);
+
+insertGameState:
+INSERT INTO GameState (petCoins, lastSaveTime, globalCoinMultiplier)
+VALUES (?, ?, ?);
+
+updateGameState:
+UPDATE GameState
+SET petCoins = ?, lastSaveTime = ?, globalCoinMultiplier = ?
+WHERE id = ?;
+
+selectGameState:
+SELECT *
+FROM GameState
+LIMIT 1;
+
+insertOwnedPet:
+INSERT INTO OwnedPets (petName, coinGenerationRate)
+VALUES (?, ?);
+
+deleteAllOwnedPets:
+DELETE FROM OwnedPets;
+
+selectAllOwnedPets:
+SELECT *
+FROM OwnedPets;
+
+insertPetRateBonus:
+INSERT INTO PetRateBonuses (petName, bonusAmount)
+VALUES (?, ?);
+
+deleteAllPetRateBonuses:
+DELETE FROM PetRateBonuses;
+
+selectAllPetRateBonuses:
+SELECT *
+FROM PetRateBonuses;
