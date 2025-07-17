@@ -1,4 +1,4 @@
-package com.quoders.kmp.template
+package com.petparadise.game
 
 import platform.UIKit.UIViewController
 
