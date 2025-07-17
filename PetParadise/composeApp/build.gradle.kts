@@ -67,6 +67,14 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
         }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+        androidUnitTest.dependencies {
+            implementation(libs.kotlin.test.junit)
+            implementation(libs.junit)
+            implementation(libs.sqldelight.driver)
+        }
     }
 }
 
