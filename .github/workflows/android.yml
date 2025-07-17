@@ -1,0 +1,43 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out your code
+      - uses: actions/checkout@v3
+
+      # 2. Install Java (you can pick 11, 17, etc. as needed)
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 22
+
+      # 3. Install Android SDK command‑line tools + platforms + build‑tools
+      - name: Install Android SDK
+        run: |
+          SDK_ROOT="$HOME/android-sdk"
+          mkdir -p "$SDK_ROOT/cmdline-tools"
+          curl -fSL https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip \
+            -o cmdline-tools.zip
+          unzip -q cmdline-tools.zip -d "$SDK_ROOT/cmdline-tools"
+          yes | "$SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager" \
+            --sdk_root="$SDK_ROOT" \
+            "platform-tools" \
+            "platforms;android-31" \
+            "build-tools;31.0.0"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> $GITHUB_ENV
+          echo "$SDK_ROOT/platform-tools" >> $GITHUB_PATH
+          echo "$SDK_ROOT/cmdline-tools/cmdline-tools/bin" >> $GITHUB_PATH
+
+      # 4. Make sure gradlew is executable
+      - run: chmod +x ./gradlew
+
+      # 5. Run your tests
+      - run: ./gradlew :composeApp:allTests
