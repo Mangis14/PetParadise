@@ -1,4 +1,3 @@
-/*
 package com.petparadise.game.data
 
 import app.cash.sqldelight.db.SqlDriver
@@ -12,4 +11,3 @@ fun createDatabase(driverFactory: DriverFactory): Database {
     val driver = driverFactory.createDriver()
     return Database(driver)
 }
-*/

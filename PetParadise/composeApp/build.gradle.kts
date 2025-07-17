@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version libs.versions.kotlin
-    id("app.cash.sqldelight") version "2.0.2"
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -57,7 +57,6 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.json)
             implementation(libs.ktor.client.logging)
-            implementation(libs.ktor.client.serialization)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.content.negotiation)
 

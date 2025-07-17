@@ -1,4 +1,4 @@
-package com.quoders.kmp.template.di
+package com.petparadise.game.di
 
 import org.koin.dsl.module
 

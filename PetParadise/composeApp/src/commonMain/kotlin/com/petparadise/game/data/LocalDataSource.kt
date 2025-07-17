@@ -1,4 +1,3 @@
-/*
 package com.petparadise.game.data
 
 import com.petparadise.game.cache.Database
@@ -44,4 +43,4 @@ class LocalDataSource(database: Database) {
             petRateBonusesQueries.insertPetRateBonus(petName, bonusAmount)
         }
     }
-}*/
+}
