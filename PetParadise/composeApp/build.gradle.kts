@@ -42,6 +42,18 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.sqldelight.driver.android)
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+                implementation(libs.sqldelight.driver)
+            }
+        }
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.kotlinx.coroutines.test)
+            }
+        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
